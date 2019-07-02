@@ -1,4 +1,4 @@
-# Install script for directory: /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/source
+# Install script for directory: /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/source
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,17 +29,22 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "1")
+  set(CMAKE_INSTALL_SO_NO_EXE "0")
 endif()
 
-if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster")
     file(RPATH_CHECK
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE EXECUTABLE FILES "/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/build/build/Release/MyVolumeRaycaster")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE EXECUTABLE FILES "/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/build/build/Release/MyVolumeRaycaster")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster")
     if(CMAKE_INSTALL_DO_STRIP)

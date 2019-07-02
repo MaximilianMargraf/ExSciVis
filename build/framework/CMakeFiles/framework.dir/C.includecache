@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -34,7 +34,7 @@ GL/glew.h
 windows.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/glew.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/glew.c
 GL/glew.h
 -
 GL/wglew.h

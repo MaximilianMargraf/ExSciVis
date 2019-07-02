@@ -52,7 +52,7 @@ PROJECT_LOGO           =
 # If a relative path is entered, it will be relative to the location
 # where doxygen was started. If left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/build/external/glfw-3.0.3/docs
+OUTPUT_DIRECTORY       = /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/build/external/glfw-3.0.3/docs
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create
 # 4096 sub-directories (in 2 levels) under the output directory of each output
@@ -641,7 +641,7 @@ WARN_FORMAT            = "$file:$line: $text"
 # and error messages should be written. If left blank the output is written
 # to stderr.
 
-WARN_LOGFILE           = /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/build/external/glfw-3.0.3/docs/warnings.txt
+WARN_LOGFILE           = /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/build/external/glfw-3.0.3/docs/warnings.txt
 
 #---------------------------------------------------------------------------
 # configuration options related to the input files
@@ -653,17 +653,17 @@ WARN_LOGFILE           = /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/build/e
 # with spaces.
 
 INPUT                  =                          \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/include/GLFW/glfw3.h       \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/include/GLFW/glfw3native.h \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/main.dox              \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/news.dox              \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/quick.dox             \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/moving.dox            \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/build.dox             \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/context.dox           \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/monitor.dox           \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/window.dox            \
-                         /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/compat.dox
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/include/GLFW/glfw3.h       \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/include/GLFW/glfw3native.h \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/main.dox              \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/news.dox              \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/quick.dox             \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/moving.dox            \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/build.dox             \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/context.dox           \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/monitor.dox           \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/window.dox            \
+                         /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/docs/compat.dox
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is
@@ -723,7 +723,7 @@ EXCLUDE_SYMBOLS        = APIENTRY GLFWAPI
 # directories that contain example code fragments that are included (see
 # the \include command).
 
-EXAMPLE_PATH           = /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/examples
+EXAMPLE_PATH           = /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/examples
 
 # If the value of the EXAMPLE_PATH tag contains directories, you can use the
 # EXAMPLE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp

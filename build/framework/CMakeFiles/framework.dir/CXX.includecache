@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -764,15 +764,15 @@ glm/vec2.hpp
 glm/vec3.hpp
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/color.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/color.hpp
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/cube.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/cube.cpp
 cube.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/cube.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/cube.hpp
 array
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/cube.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/cube.hpp
 GL/glew.h
 -
 OpenGL/gl3.h
@@ -784,15 +784,15 @@ glm/vec2.hpp
 glm/vec3.hpp
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/data_types_fwd.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/data_types_fwd.hpp
 vector
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imconfig.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imconfig.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imgui.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imgui.cpp
 imgui.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imgui.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imgui.h
 ctype.h
 -
 math.h
@@ -806,13 +806,13 @@ stddef.h
 stdint.h
 -
 stb_rect_pack.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_rect_pack.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_rect_pack.h
 stb_truetype.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_truetype.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_truetype.h
 stb_textedit.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_textedit.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_textedit.h
 stb_textedit.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_textedit.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_textedit.h
 windows.h
 -
 windows.h
@@ -820,11 +820,11 @@ windows.h
 Imm.h
 -
 imgui_user.inl
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imgui_user.inl
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imgui_user.inl
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imgui.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imgui.h
 imconfig.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imconfig.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imconfig.h
 float.h
 -
 stdarg.h
@@ -838,13 +838,13 @@ string.h
 assert.h
 -
 imgui_user.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imgui_user.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imgui_user.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imgui_impl_glfw_gl3.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imgui_impl_glfw_gl3.cpp
 imgui.h
 -
 imgui_impl_glfw_gl3.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imgui_impl_glfw_gl3.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imgui_impl_glfw_gl3.h
 cstring
 -
 iostream
@@ -856,15 +856,15 @@ GLFW/glfw3.h
 GLFW/glfw3native.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/imgui_impl_glfw_gl3.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/imgui_impl_glfw_gl3.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/plane.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/plane.cpp
 plane.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/plane.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/plane.hpp
 array
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/plane.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/plane.hpp
 GL/glew.h
 -
 OpenGL/gl3.h
@@ -876,23 +876,23 @@ glm/vec2.hpp
 glm/vec3.hpp
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_rect_pack.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_rect_pack.h
 stdlib.h
 -
 assert.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_textedit.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_textedit.h
 string.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_truetype.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_truetype.h
 stb_truetype.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_truetype.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_truetype.h
 stdio.h
 -
 stb_truetype.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/stb_truetype.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/stb_truetype.h
 stdlib.h
 -
 math.h
@@ -908,9 +908,9 @@ string.h
 memory.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/transfer_function.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/transfer_function.cpp
 transfer_function.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/transfer_function.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/transfer_function.hpp
 iostream
 -
 fstream
@@ -928,11 +928,11 @@ glm/gtc/matrix_transform.hpp
 glm/gtc/type_ptr.hpp
 -
 utils.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/utils.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/utils.hpp
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/transfer_function.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/transfer_function.hpp
 data_types_fwd.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/data_types_fwd.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/data_types_fwd.hpp
 string
 -
 map
@@ -948,13 +948,13 @@ utils.hpp
 plane.hpp
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/utils.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/utils.cpp
 utils.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/utils.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/utils.hpp
 stdexcept
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/utils.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/utils.hpp
 GL/glew.h
 -
 OpenGL/gl3.h
@@ -972,17 +972,17 @@ cerrno
 iostream
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/volume_loader_raw.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/volume_loader_raw.cpp
 volume_loader_raw.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/volume_loader_raw.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/volume_loader_raw.hpp
 iostream
 -
 fstream
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/volume_loader_raw.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/volume_loader_raw.hpp
 data_types_fwd.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/data_types_fwd.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/data_types_fwd.hpp
 array
 -
 string
@@ -990,17 +990,17 @@ string
 glm/vec3.hpp
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/window.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/window.cpp
 window.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/window.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/window.hpp
 cstring
 -
 iostream
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/window.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/window.hpp
 color.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/framework/color.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/framework/color.hpp
 GL/glew.h
 -
 GLFW/glfw3.h

@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/EGL/eglext.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/EGL/eglext.h
 EGL/eglplatform.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/glext.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/glext.h
 windows.h
 -
 stddef.h
@@ -28,7 +28,7 @@ stdint.h
 inttypes.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/glxext.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/glxext.h
 inttypes.h
 -
 inttypes.h
@@ -42,11 +42,11 @@ stdint.h
 inttypes.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/wglext.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/wglext.h
 windows.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/include/GLFW/glfw3.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/include/GLFW/glfw3.h
 stddef.h
 -
 OpenGL/gl3.h
@@ -68,15 +68,15 @@ GL/gl.h
 GL/glu.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/clipboard.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/clipboard.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 math.h
 -
 string.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/cocoa_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/cocoa_platform.h
 stdint.h
 -
 Cocoa/Cocoa.h
@@ -84,7 +84,7 @@ Cocoa/Cocoa.h
 ApplicationServices/ApplicationServices.h
 -
 nsgl_platform.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/nsgl_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/nsgl_platform.h
 IOKit/IOKitLib.h
 -
 IOKit/IOCFPlugIn.h
@@ -94,9 +94,9 @@ IOKit/hid/IOHIDLib.h
 IOKit/hid/IOHIDKeys.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/context.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/context.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 stdio.h
 -
 string.h
@@ -106,17 +106,17 @@ limits.h
 stdio.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/egl_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/egl_platform.h
 EGL/egl.h
 -
 ../deps/EGL/eglext.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/EGL/eglext.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/EGL/eglext.h
 dlfcn.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/gamma.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/gamma.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 math.h
 -
 stdlib.h
@@ -126,9 +126,9 @@ string.h
 malloc.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/glx_context.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/glx_context.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 string.h
 -
 stdlib.h
@@ -138,17 +138,17 @@ assert.h
 pthread.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/glx_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/glx_platform.h
 GL/glx.h
 -
 ../deps/GL/glxext.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/glxext.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/glxext.h
 dlfcn.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/init.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/init.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 string.h
 -
 stdlib.h
@@ -158,31 +158,31 @@ stdio.h
 stdarg.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/input.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/input.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 config.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/config.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/config.h
 ../include/GLFW/glfw3.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/include/GLFW/glfw3.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/include/GLFW/glfw3.h
 ../deps/GL/glext.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/glext.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/glext.h
 cocoa_platform.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/cocoa_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/cocoa_platform.h
 win32_platform.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/win32_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/win32_platform.h
 x11_platform.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_platform.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/joystick.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/joystick.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/monitor.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/monitor.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 string.h
 -
 stdlib.h
@@ -192,17 +192,17 @@ limits.h
 malloc.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/nsgl_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/nsgl_platform.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/time.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/time.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/wgl_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/wgl_platform.h
 ../deps/GL/wglext.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/wglext.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/deps/GL/wglext.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/win32_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/win32_platform.h
 windows.h
 -
 mmsystem.h
@@ -210,13 +210,13 @@ mmsystem.h
 dbt.h
 -
 wgl_platform.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/wgl_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/wgl_platform.h
 egl_platform.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/egl_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/egl_platform.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/window.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/window.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 string.h
 -
 stdlib.h
@@ -224,9 +224,9 @@ stdlib.h
 malloc.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_clipboard.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_clipboard.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 stdio.h
 -
 limits.h
@@ -236,17 +236,17 @@ string.h
 stdlib.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_gamma.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_gamma.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 limits.h
 -
 string.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_init.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_init.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 X11/Xresource.h
 -
 stdlib.h
@@ -256,9 +256,9 @@ string.h
 limits.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_joystick.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_joystick.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 linux/joystick.h
 -
 sys/types.h
@@ -280,9 +280,9 @@ stdlib.h
 string.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_monitor.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_monitor.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 limits.h
 -
 stdlib.h
@@ -290,7 +290,7 @@ stdlib.h
 string.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_platform.h
 unistd.h
 -
 signal.h
@@ -312,25 +312,25 @@ X11/extensions/XInput2.h
 X11/XKBlib.h
 -
 glx_platform.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/glx_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/glx_platform.h
 egl_platform.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/egl_platform.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/egl_platform.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_time.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_time.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 sys/time.h
 -
 time.h
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_unicode.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_unicode.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_window.c
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/x11_window.c
 internal.h
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3/src/internal.h
 sys/select.h
 -
 string.h

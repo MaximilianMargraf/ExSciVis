@@ -13,4 +13,3 @@ How To Install:
 
 GUI created with ImGui
 https://github.com/ocornut/imgui
-# ExSciVis

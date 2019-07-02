@@ -1,4 +1,4 @@
-# Install script for directory: /home/lyrrok/Desktop/SciVis/ExSciVis2019-master/external/glfw-3.0.3
+# Install script for directory: /home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/external/glfw-3.0.3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,12 +29,17 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "1")
+  set(CMAKE_INSTALL_SO_NO_EXE "0")
+endif()
+
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/build/external/glfw-3.0.3/src/cmake_install.cmake")
+  include("/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/build/external/glfw-3.0.3/src/cmake_install.cmake")
 
 endif()
 

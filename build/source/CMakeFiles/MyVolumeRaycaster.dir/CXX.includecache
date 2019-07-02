@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -914,9 +914,9 @@ array
 string
 -
 
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/source/my_volume_raycaster.cpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/source/my_volume_raycaster.cpp
 fensterchen.hpp
-/home/lyrrok/Desktop/SciVis/ExSciVis2019-master/source/fensterchen.hpp
+/home/IN/vade9658/Documents/ExSciVis/ExSciVis2019-master/source/fensterchen.hpp
 string
 -
 iostream

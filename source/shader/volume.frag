@@ -47,36 +47,6 @@ get_sample_data(vec3 in_sampling_pos)
 
 }
 
-vec3
-get_gradient(vec3 sampling_pos) {
-  // Central Difference: Dx = ( f(x+1, y, z) - f(x-1, y, z)) / 2
-  vec3 dir = max_bounds / volume_dimensions;
-
-  float Dx = (get_sample_data(vec3(sampling_pos.x + dir.x, sampling_pos.yz)) - get_sample_data(vec3(sampling_pos.x - dir.x, sampling_pos.yz))) / 2;
-  float Dy = (get_sample_data(vec3(sampling_pos.x, sampling_pos.y + dir.y, sampling_pos.z)) - get_sample_data(vec3(sampling_pos.x, sampling_pos.y - dir.y, sampling_pos.z))) / 2;
-  float Dz = (get_sample_data(vec3(sampling_pos.xy, sampling_pos.z + dir.z)) - get_sample_data(vec3(sampling_pos.xy, sampling_pos.z - dir.z))) / 2;
-
-  return vec3(Dx, Dy, Dz);
-}
-
-vec3
-calculate_light(vec3 sampling_pos) {
-  vec3 normal = normalize(get_gradient(sampling_pos)) * -1;
-  vec3 light = normalize(light_position - sampling_pos);
-
-  float lambertian = max(dot(normal, light), 0.0);
-  vec3 halfway  = normalize(light + normal);
-
-  float specular_Angle = max(dot(halfway, normal), 0.0);
-  float specular = 0.0;
-
-  if(lambertian > 0.0) {
-    specular = pow(specular_Angle, light_ref_coef);
-  }
-
-  return (light_ambient_color + lambertian * light_diffuse_color + specular * light_specular_color);
-}
-
 void main()
 {
     /// One step trough the volume
@@ -112,7 +82,7 @@ void main()
         max_val.g = max(color.g, max_val.g);
         max_val.b = max(color.b, max_val.b);
         max_val.a = max(color.a, max_val.a);
-
+        
         // increment the ray sampling position
         sampling_pos  += ray_increment;
 
@@ -124,20 +94,20 @@ void main()
 #endif 
     
 #if TASK == 11
-    //Assignment 1.1
+    // Assignment 1.1 
+    // average intensity projection
+    vec4 avg_color = vec4(0.0, 0.0, 0.0, 0.0);
+    int counter = 0;
 
-    vec4 avg_value = vec4(0.0, 0.0, 0.0, 0.0);
-    int count = 0;
-
-    while (inside_volume)
-    {      
+    while (inside_volume) {
         // get sample
         float s = get_sample_data(sampling_pos);
 
         // apply the transfer functions to retrieve color and opacity
         vec4 color = texture(transfer_texture, vec2(s, s));
 
-        avg_values += color;
+        // avg calc
+        avg_color += color;
 
         // increment the ray sampling position
         sampling_pos  += ray_increment;
@@ -145,98 +115,85 @@ void main()
         // update the loop termination condition
         inside_volume  = inside_volume_bounds(sampling_pos);
 
-        count += 1;
+        counter++;
     }
 
-    dst = avg_value/count;
+    dst = 3* avg_color / counter;
+
 #endif
     
 #if TASK == 12 || TASK == 13
-    //Assignment 1.2
+    // Assignment 1.2
     vec3 prev_sampling_pos;
-    bool binary = false;
-    float epsi = 0.0001 //threshhold for floating point operations
+    bool  binary  = false;
+    float epsilon = 0.0001; // threshold for floating point operations
 
-    while (inside_volume)
-    {
+    while (inside_volume) {
         // get sample
         float s = get_sample_data(sampling_pos);
-        prev_sampling_pos = sampling_pos; // save for binary search
+        prev_sampling_pos = sampling_pos; // save sampling pos for binary search
 
+        // dont combine this with the binary search
         if (TASK == 13)
-            binary = true;
+          binary = true;
 
-        // iso_value from uniform upload and first hit isosurface
-        if(s > iso_value && != binary){
-            dst = texture(transfer_texture, vec2(s, s));
-            break;
+        // check if the hit satisfies the iso_value
+        if (s > iso_value && !binary) {
+          dst = texture(transfer_texture, vec2(s, s));
+          break;
         }
-
+    
         // increment the ray sampling position
         sampling_pos += ray_increment;
+    
 
 #if TASK == 13 // Binary Search
-        // have data of 2 sampling positions available
-        float next_sampling = get_sample_data(sampling_pos);
+        float next_sample = get_sample_data(sampling_pos); // get next sample
 
-        if(s <= iso_value && next_sampling >= iso_value){
-            vec3 start_pos = prev_sampling_pos;
-            vec3 end_pos = sampling_pos;
-            vec3 mid_pos;
-            int iterations = 0;
-            bool in_shadow =false;
+        // check if the value of the transfer function for the 2 points is between our threshold
+        if (s <= iso_value && next_sample >= iso_value) {
+          vec3 start_pos = prev_sampling_pos;
+          vec3 end_pos   = sampling_pos;
+          vec3 mid_pos;
 
-            while(iterations <= 64){
-                mid_pos = start_pos + (end_pos - start_pos)/2;
+          int iterations = 0;
+          bool in_shadow = false;
 
-                float mid_sample = get_sample_data(mid_pos);
-                float difference = mid_sample - iso_value;
+            // artificial limit to disable loops that run forever
+            while(iterations <= 64) {
 
-                if(mid_sample == iso_value || iterations == 64
-                    || difference < epsi && difference > -epsi){
-                    dst = texture(transfer_texture, vec2(mid_sample, mid_sample));
-                    break;
-                    }
-                else if (mid_sample < iso_value){
-                    start_pos = mid_pos;
-                }
-                else { // mid_sample < iso_value
-                    end_pos = mid_pos;
-                }
-                ++iteraions;
+            // calculate middle point
+            mid_pos = start_pos + (end_pos-start_pos) / 2;
+
+            // get sample of middle point
+            float mid_sample = get_sample_data(mid_pos);
+            float difference = mid_sample - iso_value;
+
+            // check if middle point satisfies the conditions, check if the difference is small enough for performance improvement
+            if (mid_sample == iso_value || iterations == 64 ||
+                difference < epsilon && difference > -epsilon) {
+              dst = texture(transfer_texture, vec2(mid_sample, mid_sample));
+              break;
             }
+            // if not satisfied, halve the interval and try again
+            else if (mid_sample < iso_value) {
+              start_pos = mid_pos;
+            }
+            else { // mid_sample > iso_value
+              end_pos = mid_pos;
+            }
+
+            ++iterations;
+        }
+    }
+#endif
 
 #if ENABLE_LIGHTNING == 1 // Add Shading
-            if(!=in_shadow){
-                dst = vec4(calculate_light(mid_pos), 1);
-            }
-#endif
+        IMPLEMENTLIGHT;
 #if ENABLE_SHADOWING == 1 // Add Shadows
-            vec3 light_dir = normalize(light_position - mid_pos);
-            vec3 shadow_step = light_dir * sampling_distance;
-            float epsilon = 0.1;
-            vec3 shadow_pos = mid_pos + shadow_step;
-            float mid_sample = get_sample_data(mid_pos + shadow_step * epsilon);
-
-            iterations = int(length(light_dir)/sampling_distance);
-            int i = 0;
-
-            while(i < iterations) {
-                shadow_pos += shadow_step;
-                float shadow_sample = get_sample_data(shadow_pos);
-                ++i;
-
-            if(shadow_sample < iso_value && mid_sample > iso_value || shadow_sample > iso_value && mid_sample < iso_value){
-                dst = vec4(light_ambient_color, 1);
-                break;
-            }
-        }
-
-    in_shadow = true;
+        IMPLEMENTSHADOW;
 #endif
-
-        break;
-    }
+#endif
 
         // update the loop termination condition
         inside_volume = inside_volume_bounds(sampling_pos);
@@ -244,55 +201,33 @@ void main()
 #endif 
 
 #if TASK == 31
-
-#if ENABLE_SHADOWING == 1  // Hack: button label changes when compositing is selected (Back-To-Front)
-    while (inside_volume) {
-      sampling_pos += ray_increment;
-      // update the loop termination condition
-      inside_volume = inside_volume_bounds(sampling_pos);
-    }
-    sampling_pos -= ray_increment; // step back to last position "inside_volume"
-    inside_volume = inside_volume_bounds(sampling_pos);
-#endif
-
-float transparency = 1.0;
-float epsilon = 0.0001; // threshold for floating point operations
-
-    while (inside_volume) {
-      float s = get_sample_data(sampling_pos);
-      vec4 color = texture(transfer_texture, vec2(s, s));
-
+    // the traversal loop,
+    // termination when the sampling position is outside volume boundarys
+    // another termination condition for early ray termination is added
+    while (inside_volume)
+    {
+        // get sample
 #if ENABLE_OPACITY_CORRECTION == 1 // Opacity Correction
-      color.a = 1 - pow((1 - color.a), 255 * sampling_distance / sampling_distance_ref);
+        IMPLEMENT;
+#else
+        float s = get_sample_data(sampling_pos);
 #endif
+        // dummy code
+        dst = vec4(light_specular_color, 1.0);
+
+        // increment the ray sampling position
+        sampling_pos += ray_increment;
 
 #if ENABLE_LIGHTNING == 1 // Add Shading
-      color.rgb += calculate_light(sampling_pos) * transparency * color.a;
+        IMPLEMENT;
 #endif
 
-#if ENABLE_SHADOWING == 0 // Front_to_Back compositing
-
-      dst.rgb += color.rgb * transparency * color.a;
-      transparency *= (1.0 - color.a);
-      dst.a = 1.0 - transparency;
-
-      if(transparency <= epsilon){
-          break;
-      }
-
-      sampling_pos += ray_increment;
-#else                   // Back_to_Front compositing
-      dst.rgb = color.rgb * color.a + dst.rgb * (1.0 - color.a);
-      dst.a += color.a;
-
-      sampling_pos -= ray_increment;
-#endif
-      // update the loop termination condition
-      inside_volume = inside_volume_bounds(sampling_pos);
+        // update the loop termination condition
+        inside_volume = inside_volume_bounds(sampling_pos);
     }
-
-#endif
+#endif 
 
     // return the calculated color value
     FragColor = dst;
 }
+
