@@ -66,22 +66,28 @@ vec3 get_gradient(vec3 in_sampling_pos)
     return vec3(delta_x, delta_y, delta_z);
 }
 
-// basic phong shading
+// basic phong shading https://learnopengl.com/Lighting/Basic-Lighting
 vec3 calculate_light(vec3 sampling_pos) {
-  vec3 normal = normalize(get_gradient(sampling_pos)) * -1;
-  vec3 light = normalize(light_position - sampling_pos);
+    // get normal of the sampling position
+    vec3 normal = normalize(get_gradient(sampling_pos)) * -1;
+    
+    // vector from light source to sampling position
+    vec3 light = normalize(light_position - sampling_pos);
 
-  float lambertian = max(dot(normal, light), 0.0);
-  vec3 halfway  = normalize(light + normal);
+    // diffuse part
+    float diff = max(dot(normal, light), 0.0);
+    vec3 halfway  = normalize(light + normal);
 
-  float specular_Angle = max(dot(halfway, normal), 0.0);
-  float specular = 0.0;
+    // specular part
+    float specular = 0.0;
+    float specular_Angle = max(dot(halfway, normal), 0.0);
+    if(diff > 0.0) {
+        specular = pow(specular_Angle, light_ref_coef);
+    }
 
-  if(lambertian > 0.0) {
-    specular = pow(specular_Angle, light_ref_coef);
-  }
-
-  return (light_ambient_color + lambertian * light_diffuse_color + specular * light_specular_color);
+    return (light_ambient_color +
+            diff * light_diffuse_color +
+            specular * light_specular_color);
 }
 
 void main()
@@ -186,6 +192,7 @@ void main()
 
 #if TASK == 13 // Binary Search
         float next_sample = get_sample_data(sampling_pos); // get next sample
+        bool in_shadow = false;
 
         // check if the value of the transfer function for the 2 points is between our threshold
         if (s <= iso_value && next_sample >= iso_value) {
@@ -194,7 +201,7 @@ void main()
           vec3 mid_pos;
 
           int iterations = 0;
-          bool in_shadow = false;
+          
 
             // artificial limit to disable loops that run forever
             while(iterations <= 64) {
@@ -223,20 +230,23 @@ void main()
             }
 
 #if ENABLE_LIGHTNING == 1 // Add Shading
+            // add light if its not in the shadow
             if(!in_shadow){
                 dst = vec4(calculate_light(mid_pos), 1);
             }
 #endif
 
 #if ENABLE_SHADOWING == 1 // Add Shadows
-            // light direction
+            // light direction normalized
             vec3 light_dir = normalize(light_position - mid_pos);
             
-            // distance from light to binary search point
+            // how far do we sample in the direction of the light
             vec3 shadow_step = light_dir * sampling_distance;
+            
+            // we do not need to calculate the shadows for the whole sample distance
             float epsilon = 0.1;
 
-            // posittion of the shadow
+            // position of the shadow
             vec3 shadow_pos = mid_pos + shadow_step;
             float mid_sample = get_sample_data(mid_pos + shadow_step * epsilon);
 
@@ -245,13 +255,13 @@ void main()
             int i = 0;
 
             while(i < iterations) {
-            shadow_pos += shadow_step;
-            float shadow_sample = get_sample_data(shadow_pos);
-            ++i;
+                shadow_pos += shadow_step;
+                float shadow_sample = get_sample_data(shadow_pos);
+                ++i;
 
-            if(shadow_sample < iso_value && mid_sample > iso_value || shadow_sample > iso_value && mid_sample < iso_value){
-                dst = vec4(light_ambient_color, 1);
-                  break;
+                if(shadow_sample < iso_value && mid_sample > iso_value || shadow_sample > iso_value && mid_sample < iso_value){
+                    dst = vec4(light_ambient_color, 1);
+                    break;
                 }
             }
 
