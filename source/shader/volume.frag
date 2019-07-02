@@ -47,6 +47,43 @@ get_sample_data(vec3 in_sampling_pos)
 
 }
 
+// central difference
+vec3 get_gradient(vec3 in_sampling_pos)
+{
+    // Central Difference: Dx = ( f(x+1, y, z) - f(x-1, y, z)) / 2
+    // determine relative distance for central difference (1 in standarf formula) for all directions
+    float h_x = max_bounds.x / volume_dimensions.x;
+    float h_y = max_bounds.y / volume_dimensions.y;
+    float h_z = max_bounds.z / volume_dimensions.z;
+
+    // for every axis calculate the 
+    float delta_x = (get_sample_data(vec3(in_sampling_pos.x + h_x, in_sampling_pos.y, in_sampling_pos.z)) - get_sample_data(vec3(in_sampling_pos.x - h_x, in_sampling_pos.y, in_sampling_pos.z)))/2;
+
+    float delta_y = (get_sample_data(vec3(in_sampling_pos.x, in_sampling_pos.y + h_y, in_sampling_pos.z)) - get_sample_data(vec3(in_sampling_pos.x, in_sampling_pos.y - h_y, in_sampling_pos.z)))/2;
+
+    float delta_z = (get_sample_data(vec3(in_sampling_pos.x, in_sampling_pos.y, in_sampling_pos.z + h_z)) - get_sample_data(vec3(in_sampling_pos.x, in_sampling_pos.y, in_sampling_pos.z - h_z)))/2;
+
+    return vec3(delta_x, delta_y, delta_z);
+}
+
+// basic phong shading
+vec3 calculate_light(vec3 sampling_pos) {
+  vec3 normal = normalize(get_gradient(sampling_pos)) * -1;
+  vec3 light = normalize(light_position - sampling_pos);
+
+  float lambertian = max(dot(normal, light), 0.0);
+  vec3 halfway  = normalize(light + normal);
+
+  float specular_Angle = max(dot(halfway, normal), 0.0);
+  float specular = 0.0;
+
+  if(lambertian > 0.0) {
+    specular = pow(specular_Angle, light_ref_coef);
+  }
+
+  return (light_ambient_color + lambertian * light_diffuse_color + specular * light_specular_color);
+}
+
 void main()
 {
     /// One step trough the volume
@@ -161,44 +198,73 @@ void main()
 
             // artificial limit to disable loops that run forever
             while(iterations <= 64) {
+                // calculate middle point
+                mid_pos = start_pos + (end_pos-start_pos) / 2;
 
-            // calculate middle point
-            mid_pos = start_pos + (end_pos-start_pos) / 2;
+                // get sample of middle point
+                float mid_sample = get_sample_data(mid_pos);
+                float difference = mid_sample - iso_value;
 
-            // get sample of middle point
-            float mid_sample = get_sample_data(mid_pos);
-            float difference = mid_sample - iso_value;
+                // check if middle point satisfies the conditions, check if the difference is small enough for performance improvement
+                if (mid_sample == iso_value || iterations == 64 ||
+                    difference < epsilon && difference > -epsilon) {
+                  dst = texture(transfer_texture, vec2(mid_sample, mid_sample));
+                  break;
+                }
+                // if not satisfied, halve the interval and try again, check in which half you are
+                else if (mid_sample < iso_value) {
+                  start_pos = mid_pos;
+                }
+                else { // mid_sample > iso_value
+                  end_pos = mid_pos;
+                }
 
-            // check if middle point satisfies the conditions, check if the difference is small enough for performance improvement
-            if (mid_sample == iso_value || iterations == 64 ||
-                difference < epsilon && difference > -epsilon) {
-              dst = texture(transfer_texture, vec2(mid_sample, mid_sample));
-              break;
+                ++iterations;
             }
-            // if not satisfied, halve the interval and try again
-            else if (mid_sample < iso_value) {
-              start_pos = mid_pos;
-            }
-            else { // mid_sample > iso_value
-              end_pos = mid_pos;
-            }
-
-            ++iterations;
-        }
-    }
-#endif
 
 #if ENABLE_LIGHTNING == 1 // Add Shading
-        IMPLEMENTLIGHT;
-#if ENABLE_SHADOWING == 1 // Add Shadows
-        IMPLEMENTSHADOW;
-#endif
+            if(!in_shadow){
+                dst = vec4(calculate_light(mid_pos), 1);
+            }
 #endif
 
+#if ENABLE_SHADOWING == 1 // Add Shadows
+            // light direction
+            vec3 light_dir = normalize(light_position - mid_pos);
+            
+            // distance from light to binary search point
+            vec3 shadow_step = light_dir * sampling_distance;
+            float epsilon = 0.1;
+
+            // posittion of the shadow
+            vec3 shadow_pos = mid_pos + shadow_step;
+            float mid_sample = get_sample_data(mid_pos + shadow_step * epsilon);
+
+            // 
+            iterations = int(length(light_dir)/sampling_distance);
+            int i = 0;
+
+            while(i < iterations) {
+            shadow_pos += shadow_step;
+            float shadow_sample = get_sample_data(shadow_pos);
+            ++i;
+
+            if(shadow_sample < iso_value && mid_sample > iso_value || shadow_sample > iso_value && mid_sample < iso_value){
+                dst = vec4(light_ambient_color, 1);
+                  break;
+                }
+            }
+
+            in_shadow = true;
+#endif
+        break;
+      }
+
+#endif
         // update the loop termination condition
         inside_volume = inside_volume_bounds(sampling_pos);
     }
-#endif 
+#endif
 
 #if TASK == 31
     // the traversal loop,
