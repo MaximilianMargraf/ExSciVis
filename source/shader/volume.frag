@@ -277,30 +277,44 @@ void main()
 #endif
 
 #if TASK == 31
-    // the traversal loop,
-    // termination when the sampling position is outside volume boundarys
-    // another termination condition for early ray termination is added
+    float trans = 1.0;
+    float epsi = 0.01;
+
     while (inside_volume)
     {
         // get sample
-#if ENABLE_OPACITY_CORRECTION == 1 // Opacity Correction
-        IMPLEMENT;
-#else
         float s = get_sample_data(sampling_pos);
-#endif
-        // dummy code
-        dst = vec4(light_specular_color, 1.0);
+        vec4 color = texture(transfer_texture, vec2(s, s));
 
-        // increment the ray sampling position
-        sampling_pos += ray_increment;
+#if ENABLE_OPACITY_CORRECTION == 1 // Opacity Correction with formula from slides
+        color.a = 1 - pow(1 - color.a, 255 * sampling_distance / sampling_distance_ref);
+#endif
 
 #if ENABLE_LIGHTNING == 1 // Add Shading
-        IMPLEMENT;
+        // calculate local illumination for the volume samples during compositing
+        color.rgb += calculate_light(sampling_pos) * trans * color.a;
+#endif
+
+#if ENABLE_SHADOWING == 0
+        // color.rgb * color.a = I_i
+        dst.rgb += color.rgb * color.a * trans;
+
+        trans *= (1 - color.a);
+        dst.a = 1.0 -trans;
+
+        // check if we get close to 0
+        if( trans < epsi){
+            break;
+        }
+
+        sampling_pos += ray_increment;
+
 #endif
 
         // update the loop termination condition
         inside_volume = inside_volume_bounds(sampling_pos);
     }
+
 #endif 
 
     // return the calculated color value
