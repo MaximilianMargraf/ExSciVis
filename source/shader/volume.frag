@@ -277,8 +277,9 @@ void main()
 #endif
 
 #if TASK == 31
+    // done per pixel
     float trans = 1.0;
-    float epsi = 0.01;
+    float epsi = 0.0001;
 
     while (inside_volume)
     {
@@ -290,12 +291,11 @@ void main()
         color.a = 1 - pow(1 - color.a, 255 * sampling_distance / sampling_distance_ref);
 #endif
 
-#if ENABLE_LIGHTNING == 1 // Add Shading
+#if ENABLE_LIGHTNING == 1 // Illumination
         // calculate local illumination for the volume samples during compositing
-        color.rgb += calculate_light(sampling_pos) * trans * color.a;
+        color.rgb += calculate_light(sampling_pos) * color.a;
 #endif
 
-#if ENABLE_SHADOWING == 0
         // color.rgb * color.a = I_i
         dst.rgb += color.rgb * color.a * trans;
 
@@ -308,8 +308,6 @@ void main()
         }
 
         sampling_pos += ray_increment;
-
-#endif
 
         // update the loop termination condition
         inside_volume = inside_volume_bounds(sampling_pos);
