@@ -51,7 +51,7 @@ get_sample_data(vec3 in_sampling_pos)
 vec3 get_gradient(vec3 in_sampling_pos)
 {
     // Central Difference: Dx = ( f(x+1, y, z) - f(x-1, y, z)) / 2
-    // determine relative distance for central difference (1 in standarf formula) for all directions
+    // determine relative distance for central difference (1 in standard formula) for all directions
     float h_x = max_bounds.x / volume_dimensions.x;
     float h_y = max_bounds.y / volume_dimensions.y;
     float h_z = max_bounds.z / volume_dimensions.z;
@@ -170,6 +170,7 @@ void main()
     vec3 prev_sampling_pos;
     bool  binary  = false;
     float epsilon = 0.0001; // threshold for floating point operations
+    bool in_shadow = false;
 
     while (inside_volume) {
         // get sample
@@ -179,20 +180,59 @@ void main()
         // dont combine this with the binary search
         if (TASK == 13)
           binary = true;
+        if(TASK == 12)
+            binary = false;
 
         // check if the hit satisfies the iso_value
         if (s > iso_value && !binary) {
-          dst = texture(transfer_texture, vec2(s, s));
-          break;
+            if(ENABLE_LIGHTNING == 0){
+                dst = texture(transfer_texture, vec2(s, s));
+                break;
+            }
+
+            if(ENABLE_SHADOWING == 1){
+                // light direction normalized
+                vec3 light_dir = normalize(light_position - sampling_pos);
+                
+                // how far do we sample in the direction of the light from point on
+                vec3 shadow_step = light_dir * sampling_distance;
+                
+                // position of the shadow
+                vec3 shadow_pos = sampling_pos + shadow_step;
+                float mid_sample = get_sample_data(sampling_pos + shadow_step * 0.1);
+
+                int iterations = int(length(light_dir)/sampling_distance);
+                int i = 0;
+
+                while(i < iterations) {
+                    shadow_pos += shadow_step;
+                    float shadow_sample = get_sample_data(shadow_pos);
+                    
+                    if(shadow_sample > mid_sample ){
+                        dst = vec4(light_ambient_color, 1);
+                        in_shadow = true;
+                        break;
+                    }
+                    ++i;
+                } 
+            }
+
+            if(ENABLE_LIGHTNING == 1 && !in_shadow){
+                float s = get_sample_data(sampling_pos);
+                vec4 color = texture(transfer_texture, vec2(s, s));
+                color += vec4(calculate_light(sampling_pos), 1);
+                dst = color;
+                break;
+            }
         }
     
         // increment the ray sampling position
         sampling_pos += ray_increment;
-    
+
+
 
 #if TASK == 13 // Binary Search
         float next_sample = get_sample_data(sampling_pos); // get next sample
-        bool in_shadow = false;
 
         // check if the value of the transfer function for the 2 points is between our threshold
         if (s <= iso_value && next_sample >= iso_value) {
@@ -232,7 +272,10 @@ void main()
 #if ENABLE_LIGHTNING == 1 // Add Shading
             // add light if its not in the shadow
             if(!in_shadow){
-                dst = vec4(calculate_light(mid_pos), 1);
+                float s = get_sample_data(sampling_pos);
+                vec4 color = texture(transfer_texture, vec2(s, s));
+                color += vec4(calculate_light(mid_pos), 1);
+                dst = color;
             }
 #endif
 
@@ -240,32 +283,27 @@ void main()
             // light direction normalized
             vec3 light_dir = normalize(light_position - mid_pos);
             
-            // how far do we sample in the direction of the light
+            // how far do we sample in the direction of the light from point on
             vec3 shadow_step = light_dir * sampling_distance;
             
-            // we do not need to calculate the shadows for the whole sample distance
-            float epsilon = 0.1;
-
             // position of the shadow
             vec3 shadow_pos = mid_pos + shadow_step;
-            float mid_sample = get_sample_data(mid_pos + shadow_step * epsilon);
+            float mid_sample = get_sample_data(mid_pos + shadow_step * 0.1);
 
-            // 
             iterations = int(length(light_dir)/sampling_distance);
             int i = 0;
 
             while(i < iterations) {
                 shadow_pos += shadow_step;
                 float shadow_sample = get_sample_data(shadow_pos);
-                ++i;
-
-                if(shadow_sample < iso_value && mid_sample > iso_value || shadow_sample > iso_value && mid_sample < iso_value){
+                
+                if(shadow_sample > mid_sample){
                     dst = vec4(light_ambient_color, 1);
+                    in_shadow = true;
                     break;
                 }
-            }
-
-            in_shadow = true;
+                ++i;
+            } 
 #endif
         break;
       }
@@ -293,9 +331,8 @@ void main()
 
 #if ENABLE_LIGHTNING == 1 // Illumination
         // calculate local illumination for the volume samples during compositing
-        color.rgb += calculate_light(sampling_pos) * color.a;
+        color.rgb += calculate_light(sampling_pos); // * color.a;
 #endif
-
         // color.rgb * color.a = I_i
         dst.rgb += color.rgb * color.a * trans;
 
